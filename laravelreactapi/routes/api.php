@@ -27,8 +27,11 @@ Route::middleware(['auth:sanctum', ApiAdminMiddleware::class])->group(function (
 
     // Product
     Route::post('store-product', [ProductController::class,'store']);
-    Route::post('/all-category', [CategoryController::class, 'allcategory']);    Route::post('/add-product', [ProductController::class, 'index']);
+    Route::post('/all-category', [CategoryController::class, 'allCategories']);    
+    Route::post('/add-product', [ProductController::class, 'index']);
     Route::post('/view-product', [ProductController::class, 'index']);
+    Route::post('/edit-product/{id}', [ProductController::class, 'edit']);
+    Route::post('/update-product/{id}', [ProductController::class, 'update']);
 
 });
 

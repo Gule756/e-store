@@ -6,7 +6,6 @@ use App\Http\Controllers\Controller;
 use App\Models\Category;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
-use Illuminate\Http\JsonResponse;
 
 
 
@@ -14,15 +13,15 @@ class CategoryController extends Controller
 {
 
 
-    public function allcategory(Request $request): JsonResponse
-    {
-        $categories = Category::all(); // Or however you want to fetch your categories
 
-        return response()->json([
-            'status' => 200,
-            'category' => $categories,
-        ]);
-    }
+    public function allCategories(Request $request)
+{
+    $categories = Category::all();
+    return response()->json([
+        'status' => 200,
+        'category' => $categories,
+    ]);
+}
     public function index(Request $request)
     {
         $Category = Category::all();
