@@ -63,9 +63,9 @@ class ProductController extends Controller
                 $product->image = 'uploads/product/' . $filename;
             }
 
-            $product->featured = $request->input('featured') == true ? '1' : '0';
-            $product->popular = $request->input('popular') == true ? '1' : '0';
-            $product->status = $request->input('status') == true ? '1' : '0';
+            $product->featured = $request->input('featured');
+            $product->popular = $request->input('popular');
+            $product->status = $request->input('status');
             $product->save();
         }
 
@@ -75,13 +75,12 @@ class ProductController extends Controller
         ]);
 
     }
-    
 
 
     public function edit($id)
     {
         $product = Product::find($id);
-    
+
         if ($product) {
             return response()->json([
                 'status' => 200,
@@ -129,7 +128,11 @@ class ProductController extends Controller
                 $product->original_price = $request->input('original_price');
                 $product->qty = $request->input('qty');
                 $product->description = $request->input('description');
-            
+
+                // Add these lines to update the checkbox values
+                $product->featured = $request->input('featured');
+                $product->popular = $request->input('popular');
+                $product->status = $request->input('status');
 
                 if ($request->hasFile('image')) {
                     $destination = public_path('uploads/products/' . $product->image);
@@ -157,5 +160,5 @@ class ProductController extends Controller
             }
         }
     }
-    
+
 }
